@@ -9,9 +9,9 @@ int main(){
     cout << "Введите второе число: ";
     cin >> second;
     cout << "-----Проверяем-----\n";
-    if (first==second){
+    if (first == second){
         cout << "Числа равны!";
-    } else if (first>second){
+    } else if (first > second){
         cout << "Наименьшее число: " << second;
     } else {
         cout << "Наименьшее число: " << first;

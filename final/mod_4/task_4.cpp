@@ -8,7 +8,7 @@ int main() {
     cin >> experience;
     cout << "-----Считаем-----\n";
 
-    if (experience >= 1000 & experience < 2500){
+    if (experience >= 1000 && experience < 2500){
         cout << "У вас 2 уровень!";
     } else if (experience >= 2500 & experience < 5000){
         cout << "У вас 3 уровень!";

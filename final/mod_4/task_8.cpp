@@ -19,7 +19,7 @@ int main(){
 
     cout << "-----—читаем-----\n";
 
-    if (firstSalary > twoSalary & firstSalary > threeSalary) {
+    if (firstSalary > twoSalary && firstSalary > threeSalary) {
         bigSalary = firstSalary;
         if (twoSalary < threeSalary) {
             minSalary = twoSalary;

@@ -17,7 +17,7 @@ int main() {
     cout << "-----Ïğîâåğÿåì-----\n";
     result = first + second;
 
-    if (mindÑounting==result){
+    if (mindÑounting == result){
         cout << "Âåğíî!";
     } else {
         cout << "Îøèáêà! Âåğíûé ğåçóëüòàò: " << result;

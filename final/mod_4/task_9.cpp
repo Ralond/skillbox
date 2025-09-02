@@ -18,7 +18,7 @@ int main(){
 
     if (profit <= firstMark) {
         tax = profit * 0.13;
-    } else if (profit >= firstMark & profit <= twoMark) {
+    } else if (profit >= firstMark && profit <= twoMark) {
         tax = firstMark * 0.13 + (profit - firstMark) * 0.2;
     } else {
         tax = firstMark * 0.13 + (twoMark - firstMark) * 0.2 + (profit - twoMark) * 0.3;

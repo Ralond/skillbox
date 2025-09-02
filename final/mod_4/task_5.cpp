@@ -10,7 +10,7 @@ int main() {
     cin >> second;
     cout << "-----Проверяем-----\n";
 
-    if (first%second==0){
+    if (first % second == 0){
         cout << "Да, " << first << " делится на " << second << " без остатка!";
     } else {
         cout << "Нет, " << first << " не делится на " << second << " без остатка!";

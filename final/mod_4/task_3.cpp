@@ -7,7 +7,7 @@ int main() {
     cout << "Ââåäèòå ÷èñëî: ";
     cin >> number;
 
-    if (number%2==0){
+    if (number % 2 == 0){
         cout << "×èñëî " << number << " — ÷¸òíîå!";
     } else {
         cout << "×èñëî " << number << " — íå÷¸òíîå!";
