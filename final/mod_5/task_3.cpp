@@ -8,7 +8,7 @@ int main() {
     cout << "Введите число от 1 до 7 - с какого дня недели начинается месяц: ";
     cin >> startDay;
 
-    if (startDay <= 0 || startDay >= 8) {
+    if (startDay < 1 || startDay > 7) {
         cout << "В неделе всего 7 дней! Введите верное число дня недели: ";
         cin >> startDay;
     }
@@ -16,7 +16,7 @@ int main() {
     cout << "Введите число месяца: ";
     cin >> day;
     cout << "-----Смотрим календарь-----\n";
-    if (day >= 1 && day <= 5 || day >= 8 && day <= 10 || (day++ - startDay) % 7 == 0 || (day - startDay) % 7 == 0){
+    if (day >= 1 && day <= 5 || day >= 8 && day <= 10 || (day - startDay+1) % 7 == 6 || (day - startDay+1) % 7 == 0){
         cout << "В это число выходной!\n";
     } else cout << "В это число рабочий день!\n";
 
