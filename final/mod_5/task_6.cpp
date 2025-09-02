@@ -15,7 +15,9 @@ int main() {
     cout << "¬ведите мес€ц (от 1 до 12): "; cin >> bMonth; 
     cout << "¬ведите число: "; cin >> bDay;
  
-    if ((year-bYear) >= 18 && month >= bMonth && day > bDay) {
-        cout << "”же можно";
+    if ((year-bYear) >= 18) {
+        if (month > bMonth || month == bMonth && day > bDay){
+            cout << "”же можно";
+        }
     } else cout << "≈щЄ нельз€";
 }
