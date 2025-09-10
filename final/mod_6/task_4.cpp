@@ -14,7 +14,7 @@ int main() {
     cout << "=====Счастливый билетик=====\n";
     cout << "Введите номера билета: "; cin >> number;
     numTemp = number;
-
+// Вычисляю общее количество цифр в номере билета:
     while (numTemp != 0) {
         numTemp /= 10;
         sumNumber++;
@@ -23,20 +23,20 @@ int main() {
     sumNumberHalf = sumNumber/2;
 
     while (full) {
-        if (sumNumber > sumNumberHalf){
+        if (sumNumber > sumNumberHalf){ // Сравнение общего числа цифр с половиной, для разделения на равные части
             numTemp = number % 10;
-            numRight += numTemp;
+            numRight += numTemp; // Суммирование чисел правой части
             number /= 10;
             sumNumber--;
         } else {
             numTemp = number % 10;
             if (numTemp <= 0) {
-                numLeft += number;
-            } else numLeft += numTemp;
+                numLeft += number; // Суммирование последнего числа левой части
+            } else numLeft += numTemp; // Суммирование чисел левой части
             number /= 10;
             sumNumber--;
 
-        if (sumNumber < 0) full = false;
+        if (sumNumber < 0) full = false; // Если чисел больше нет - выход из цикла
         }
     }
 
