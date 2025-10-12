@@ -15,7 +15,7 @@ int main(){
             downloaded += connectionSpeed;
             if (downloaded > fileSize) downloaded = fileSize;
             cout << "Прошло " << sec << " сек. Скачано "<< downloaded << " из " << fileSize << " МБ (" << (int)(downloaded/fileSize*100) << "%)\n";
-            cout << "==========";
+            cout << "==========\n";
         }
     }
 
