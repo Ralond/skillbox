@@ -1,8 +1,14 @@
 #include <iostream>
 
-int findAt(const std::string& s) {
-    size_t pos = s.find('@');
-    return (pos == std::string::npos) ? -1 : static_cast<int>(pos);
+int findAt(std::string text) {
+    int count = 0;
+    for (char c : text) {
+        if (c != '@') {
+            count++;
+        } else if (c == '@') 
+            break;
+    }
+    return (count != 0) ? count : -1;
 }
 
 std::string findFirst(std::string text){
@@ -24,7 +30,7 @@ std::string findTwo(std::string text){
 }
 
 bool goodFirst(std::string text){
-    std::string dictionary = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'*+-/=?^_`{|}~.";
+    std::string dictionary = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&'*+-/=?^_`{|}~.";
     bool goodSymbol = false;
     int longText = text.length();
 
@@ -52,7 +58,7 @@ bool goodFirst(std::string text){
 }
 
 bool goodTwo(std::string text){
-    std::string dictionary = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-.";
+    std::string dictionary = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-.";
     bool goodSymbol = false;
     int longText = text.length();
 
