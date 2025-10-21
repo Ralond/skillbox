@@ -86,6 +86,8 @@ bool goodTwo(std::string text){
 }
 
 int main(){
+    // std::cout << "=====«Проверка корректности email-адреса»=====\n";
+    
     std::string email;
     while (true){
         std::cout << "Enter e-mail: "; std::cin >> email;

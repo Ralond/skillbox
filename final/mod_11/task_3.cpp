@@ -34,6 +34,7 @@ bool checkIp(string& text){
 }
 
 int main(){
+    // cout << "=====«Валидация IP-адреса»=====\n";
     while (true){
         string adressIp = ""; 
         cout << "Enter the IP Address: "; cin >> adressIp;

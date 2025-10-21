@@ -21,6 +21,7 @@ std::string encryption(std::string text, int position){
 
 int main(){
     using namespace std;
+    // cout << "=====«Шифр Цезаря»=====\n";
 
     while (true){
         string text;
