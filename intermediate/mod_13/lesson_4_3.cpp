@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 using namespace std;
 
 int main(){
@@ -7,17 +8,10 @@ int main(){
     int n=0;
     while (n != -1){
         cout << "Enter your number: "; cin >> n;
-        for (int i = queue.size(); i >= 0; i--){
-            if (queue.size() == 0) queue.push_back(n);
-            else if (queue.size() != 0 && n > queue[i-1]){
-                queue.pop_back();
-            }
-            else {
-                queue.push_back(n);
-                break;
-            }
-        }
+        queue.push_back(n);
+        int qr = sqrt(queue.size())+1;
+        if (queue.size()+2 == pow(2, qr)) cout << "Moving on to the next room\n"; //Размер вектора увеличивается каждую степень двойки
     }
-    
+
     for (int i = 0; i < queue.size(); i++) cout << queue[i] << " ";
 }
