@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 bool makeShip(bool vec[10][10], int xSt, int ySt, int xEnd = -1, int yEnd = -1){
