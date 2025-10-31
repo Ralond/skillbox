@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
     int bloc[5][5][10];
-    int section, height;
+    int slice, height;
     cout << "input matrix of heights: ";
     for (int i = 0; i < 5; i++){
         for (int j = 0; j < 5; j++){
@@ -18,10 +18,10 @@ int main(){
     }
 
     while (true){
-        cout << "input slice: "; cin >> section;
+        cout << "input slice: "; cin >> slice;
         for (int i = 0; i < 5; i++){
             for (int j = 0; j < 5; j++){
-                cout << bloc[i][j][section] << " ";
+                cout << bloc[i][j][slice] << " ";
             }
             cout << endl;
         }

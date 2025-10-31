@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void bursting(bool (&vecB)[12][12], char (&vecC)[12][12]){
+void bursting(bool vecB[12][12], char vecC[12][12]){
     int xS, yS, xF, yF;
 
     cout << "Enter the start coordinates: "; 
