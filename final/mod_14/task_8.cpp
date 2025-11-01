@@ -147,7 +147,7 @@ int main(){
             }
         }
         if (play == false) {
-            cout << "Player " << player << "won!";
+            cout << "Player " << player << "won!" << endl;
         } else (player == 1)? player = 2 : player = 1;
     }
 }
