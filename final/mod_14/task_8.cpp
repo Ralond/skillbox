@@ -114,7 +114,25 @@ bool makeShips(bool field[10][10]){
     return field;
 }
 
+void bam(bool field[10][10], int x, int y){
+    if (field[x][y]) {
+        field[x][y] = false;
+        cout << "You've hit the target!\n";
+    } else cout << "A miss!\n";
+}
 
+void showField(bool field[10][10], int num){
+    cout << "Player's " << num << " field:\n";
+    cout << "  0 1 2 3 4 5 6 7 8 9" << endl;
+    for (int i = 0; i < 10; i++){
+        cout << i << " ";
+        for (int j = 0; j < 10; j++){
+            !field[i][j]? cout << "O": cout << "K";
+            cout << " ";
+        }
+        cout << endl;
+    }
+}
 
 int main(){
     bool field_1[10][10] = {false}; 
@@ -125,5 +143,25 @@ int main(){
 
     cout << "Make ships for player 2: " << endl;
     makeShips(field_2);
+    
+    int player = 1;
+    bool play = true;
+    while (play){
+        int x, y;
+        cout << "Player " << player << ", strike at the coordinates: ";
+        cin >> x >> y;
+        (player == 1)? bam(field_2, x, y) : bam(field_1, x, y);
+        (player == 1)? showField(field_2, player) : showField(field_1, player);
 
+        for (int i = 0; i < 10; ++i) {
+            for (int j = 0; j < 10; ++j) {
+                if ((player == 1)? field_2[i][j] : field_1[i][j]) {
+                    break;
+                } else play = false;
+            }
+        }
+        if (play == false) {
+            cout << "Player " << player << "won!";
+        } else (player == 1)? player = 2 : player = 1;
+    }
 }
