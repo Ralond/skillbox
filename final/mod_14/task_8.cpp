@@ -121,19 +121,6 @@ void bam(bool field[10][10], int x, int y){
     } else cout << "A miss!\n";
 }
 
-void showField(bool field[10][10], int num){
-    cout << "Player's " << num << " field:\n";
-    cout << "  0 1 2 3 4 5 6 7 8 9" << endl;
-    for (int i = 0; i < 10; i++){
-        cout << i << " ";
-        for (int j = 0; j < 10; j++){
-            !field[i][j]? cout << "O": cout << "K";
-            cout << " ";
-        }
-        cout << endl;
-    }
-}
-
 int main(){
     bool field_1[10][10] = {false}; 
     bool field_2[10][10] = {false};
@@ -151,7 +138,6 @@ int main(){
         cout << "Player " << player << ", strike at the coordinates: ";
         cin >> x >> y;
         (player == 1)? bam(field_2, x, y) : bam(field_1, x, y);
-        (player == 1)? showField(field_2, player) : showField(field_1, player);
 
         for (int i = 0; i < 10; ++i) {
             for (int j = 0; j < 10; ++j) {
