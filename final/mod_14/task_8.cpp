@@ -111,7 +111,7 @@ bool makeShips(bool field[10][10]){
                 }
             }
     }
-    return field;
+    return true;
 }
 
 void bam(bool field[10][10], int x, int y){
