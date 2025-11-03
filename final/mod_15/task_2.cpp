@@ -3,19 +3,15 @@
 using namespace std;
 
 void sumOfTwo(vector<int> vec, int result){
-    int firstNum = 0, twoNum;
-    int tempSum;
-    for(int i = firstNum; i < vec.size()-1; i++){
-        tempSum = vec[firstNum] + vec[i+1];
-        if(tempSum == result) {
-            twoNum = i+1;
-            break;
-        } else if(i == vec.size()-2){
-            firstNum++;
-            i = firstNum;
+    for(int i = 0; i < vec.size(); i++){
+        for(int j = i+1; j < vec.size(); j++){
+            if (vec[i] + vec[j] == result){
+                cout << vec[i] << ", " << vec[j];
+                return;
+            }
         }
     }
-    cout << vec[firstNum] << ", " << vec[twoNum];
+    cout << "No pair found" << endl;
 }
 
 
