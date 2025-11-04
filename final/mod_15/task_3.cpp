@@ -2,23 +2,27 @@
 #include <vector>
 using namespace std;
 
-void fifth(vector<int> vec){
-    vector<int> sort(5);
+int fifth(vector<int> vec){
+    vector<int> sort;
     if (vec.size() <= 1){
-        cout << vec[0];
-        return;
+        return vec[0];
     }
-    for(int i = 0; i < vec.size(); i++){
+    int count = 0;
+    for(int i = 0; i < vec.size()-1; i++){
         for(int j = i+1; j < vec.size(); j++){
             int temp = vec[i];
-            if (temp > j){
+            if (vec[i] > vec[j]){
                 vec[i] = vec[j];
                 vec[j] = temp;
-            } else
-            if (j == vec.size()-1) sort[i] = vec[i];
+            }
         }
+        if (count < 5){
+            sort.push_back(vec[i]);
+            count++;
+        } else break;
     }
-    cout << "Number: " << sort[4] << endl;
+
+    return sort[sort.size()-1];
 }
 
 
@@ -30,7 +34,7 @@ int main(){
 
     while (num != -2){
         if (num == -1){
-            fifth(vec);
+            cout <<  "Number: " << fifth(vec) << endl;
             cout << "Enter your number: ";
             cin >> num;
         } else {
