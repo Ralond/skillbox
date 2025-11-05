@@ -2,62 +2,47 @@
 #include <vector>
 using namespace std;
 
-// int fifth(vector<int> vec){
-//     vector<int> sort;
-//     if (vec.size() <= 1){
-//         return vec[0];
-//     }
-//     int count = 0;
-//     for(int i = 0; i < vec.size()-1; i++){
-//         for(int j = i+1; j < vec.size(); j++){
-//             int temp = vec[i];
-//             if (vec[i] > vec[j]){
-//                 vec[i] = vec[j];
-//                 vec[j] = temp;
-//             }
-//         }
-//         if (count < 5){
-//             sort.push_back(vec[i]);
-//             count++;
-//         } else break;
-//     }
-
-//     return sort[sort.size()-1];
-// }
-
+vector<int> sort(vector<int> vec){
+    for(int i = 0; i < vec.size()-1; i++){
+        for(int j = i+1; j < vec.size(); j++){
+            int temp = vec[i];
+            if (vec[i] > vec[j]){
+                vec[i] = vec[j];
+                vec[j] = temp;
+            }
+        }
+    }
+    return vec;
+}
 
 int main(){
-    vector<int> vec(5);
+    vector<int> vec;
     int num;
     cout << "Enter your number. Input -1 for 5 in ascending order, -2 for exit: ";
     cin >> num;
-
+    
+    int count = 0;
     while (num != -2){
-        int count = 0;
         if (num == -1){
             cout <<  "Number: " << vec[vec.size()-1] << endl;
             cout << "Enter your number: ";
             cin >> num;
-        } else if (count > 0 && num > vec[vec.size()-1]){
+        } else if (count > 4){
+            if (vec.size() > 4){
+                if (num < vec[4]) vec[4] = num;
+                vec = sort(vec);
+            }
             cout << "Enter your number: ";
             cin >> num;
         } else {
             vec.push_back(num);
             if (count > 0){
-                for(int i = 0; i < vec.size()-1; i++){
-                    for(int j = i+1; j < vec.size(); j++){
-                        int temp = vec[i];
-                        if (vec[i] > vec[j]){
-                            vec[i] = vec[j];
-                            vec[j] = temp;
-                        }
-                    }
-                }
-                count++;
+                vec = sort(vec);
             }
+            count++;
             cout << "Enter your number: ";
             cin >> num;
         }
-    }
+}
     
 }
