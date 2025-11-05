@@ -29,8 +29,10 @@ int main(){
             cin >> num;
         } else if (count > 4){
             if (vec.size() > 4){
-                if (num < vec[4]) vec[4] = num;
-                vec = sort(vec);
+                if (num < vec[4]){
+                    vec[4] = num;
+                    sort(vec);
+                }
             }
             cout << "Enter your number: ";
             cin >> num;
