@@ -7,12 +7,11 @@ void sortMod(vector<int> vec){
     for(int i=1; i < vec.size();i++){
         if (abs(vec[i-1]) < abs(vec[i]) && abs(vec[i-1]) < abs(vec[ind])){
             ind = i-1;
-        } else if (abs(vec[i]) < abs(ind)) ind = i;
+        } else if (abs(vec[i]) < abs(vec[ind])) ind = i;
     }
     cout << vec[ind] << " ";
 
     int left = ind-1, right = ind+1;
-    int lol = vec.size();
     while (left >= 0 && right < vec.size()){
         if (abs(vec[left]) < abs(vec[right])){
             cout << vec[left] << " ";
