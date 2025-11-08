@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
     double speed = 0, delta;
-    char buffer[5];
+    char buffer[6];
 
     do {
         cout << "Speed delta: ";
@@ -11,7 +11,8 @@ int main(){
 
         speed += delta;
 
-        if (speed > 150) speed = 150;
+        if (speed > 150.0) speed = 150.0;
+        if (speed < 0.0) speed = 0.0;
         
         sprintf(buffer, "%.1f", speed);
         cout << "Speed: " << buffer << endl;
