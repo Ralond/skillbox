@@ -20,7 +20,7 @@ void printTime (int hours, int min){
 }
 
 void chekAutomats(unsigned char one, unsigned char buffer){
-
+    //проверка предыдущего состояния, если состояние изменено - вывод сообщения.
 }
 
 int main(){
