@@ -2,8 +2,10 @@
 using namespace std;
 
 int main(){
-    int one, two;
+    string one, two;
     cout << "Enter number and float: "; cin >> one >> two;
 
-    double result;
+    string result = one + "." + two;
+    double val = stof(result);
+    cout << "Number: " << val << endl;
 }
