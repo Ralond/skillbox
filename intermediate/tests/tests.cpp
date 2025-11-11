@@ -1,38 +1,25 @@
 #include <iostream>
-
 using namespace std;
-void combsort(int* l, int* r) {
-	int sz = r - l;
-	if (sz <= 1) return;
-	double k = 1.2473309;
-	int step = sz - 1;
-	while (step > 1) {
-		for (int* i = l; i + step < r; i++) {
-			if (*i > *(i + step))
-				swap(*i, *(i + step));
-		}
-		step /= k;
-	}
-	bool b = true;
-	while (b) {
-		b = false;
-		for (int* i = l; i + 1 < r; i++) {
-			if (*i > *(i + 1)) {
-				swap(*i, *(i + 1));
-				b = true;
-			}
-		}
-	}
-}
 
+void main()
+{
+   int i = 17;
+   int j = 29;
 
+   int* p1 = &i;
+   cout << p1 << endl;
+   cout << *p1 << endl;
 
-int main() {
-    int arr[] = {45,65,32,876,23,54,7,43,6,3,5,345,76,6,5,4,23};
-    int sizeArr = size(arr); 
+   *p1 = 103;
+   cout << i << endl;
 
+   int* p2 = p1;
+   *p2 = 107;
+   cout << i << endl << *p1 << endl;
 
-    combsort(arr, arr+sizeArr); 
+   i = 207;
+   cout << *p1 << endl << *p2 << endl;
 
-    for (int i = 0; i < size(arr); i++) cout << arr[i] << " ";
+   p2 = &j;
+   cout << *p2 << endl;
 }
