@@ -1,11 +1,14 @@
 #include <iostream>
-#include <vector>
 
-int jumping(int n, int k = 3){
-    if (k == 0) return 0;
-    if (k > n) return 1;
+int jumping(int n, int k = 3) {
+    if (n == 0) return 1;
+    if (n < 0) return 0;
     
-    return jumping(n, (k-2) + (k-1));
+    int count = 0;
+    for (int i = 1; i <= k && i <= n; i++) {
+        count += jumping(n - i, k);
+    }
+    return count;
 }
 
 int main(){
