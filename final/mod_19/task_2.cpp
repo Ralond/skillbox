@@ -13,9 +13,15 @@ int main(){
     bool find = false;
     int count = 0;
     if (file.is_open()){
-        char text;
-        while(file.get(text)){
-            std::cout << text;
+        char buffer[100];
+        file.read(buffer, 100);
+        std::streamsize corSimv = file.gcount();
+        while(corSimv > 0){
+            for(int i = 0; i < 100; i++){
+                std::cout << buffer[i];
+            }
+            file.read(buffer, 100);
+            corSimv = file.gcount();
         }
         file.close();
     } else {
