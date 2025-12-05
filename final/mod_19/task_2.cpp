@@ -8,23 +8,31 @@ int main(){
     std::cin >> way;
 
     std::ifstream file;
-    file.open(way);
+    file.open(way, std::ios::binary);
 
     bool find = false;
     int count = 0;
     if (file.is_open()){
         char buffer[100];
-        file.read(buffer, 100);
-        std::streamsize corSimv = file.gcount();
-        while(corSimv > 0){
-            for(int i = 0; i < 100; i++){
+
+        while(file.read(buffer, 100)){
+            std::streamsize colSimv = file.gcount();
+
+            for(int i = 0; i < colSimv; i++){
                 std::cout << buffer[i];
             }
-            file.read(buffer, 100);
-            corSimv = file.gcount();
         }
+
+        std::streamsize lastSimv = file.gcount();
+        if (lastSimv > 0){
+            for(int i = 0; i < lastSimv; i++){
+                std::cout << buffer[i];
+            }
+        }
+
         file.close();
     } else {
         std::cout << "Error!" << std::endl;
     }
+    std::cout << std::endl;
 }
