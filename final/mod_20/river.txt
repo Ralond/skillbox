@@ -22,20 +22,12 @@ catfish
 bass
 bluegill
 crappie
-rock bass
-smallmouth bass
-largemouth bass
 carp
 walleye
-channel catfish
-flathead catfish
 bullhead
 perch
 pike
 muskellunge
-brook trout
-brown trout
-rainbow trout
 steelhead
 shad
 chub
@@ -43,9 +35,7 @@ dace
 shiner
 sturgeon
 paddlefish
-buffalo fish
 drum
-freshwater drum
 carp
 bass
 sunfish
@@ -62,16 +52,12 @@ perch
 walleye
 sauger
 pickerel
-grass pickerel
-chain pickerel
-northern pike
 muskie
 trout
 whitefish
 cisco
 shad
 alewife
-gizzard shad
 minnow
 carp
 goldfish
@@ -82,20 +68,12 @@ sturgeon
 paddlefish
 bowfin
 gar
-longnose gar
-shortnose gar
-spotted gar
-alligator gar
 sunfish
 pumpkinseed
 redear
 warmouth
-green sunfish
 crappie
-white crappie
-black crappie
 perch
-yellow perch
 walleye
 sauger
 drum
