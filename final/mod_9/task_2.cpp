@@ -9,10 +9,9 @@ int main(){
     while (true) {
         bool good = true;
         int numberCount = 0;
+
         cout << "Enter the number: "; cin >> number;
 
-    // В примерах задания вместо минуса был символ '−', но почему-то когда вставил его в условия - всё равно не помогло 
-    // (выдавало "No")
         if (number[0] == '.' || number[0] == '-' || (number[0] >= '0' && number[0] <= '9')){
             
             int pointCount = 0;
@@ -28,7 +27,7 @@ int main(){
                 } else if (number[i] >= '0' && number[i] <= '9') {
                     numberCount++;
                 }
-                if (number[0] == '-' && number[i] == '-'){
+                if (number[i] == '-' || number[i] > 57){
                     good = false;
                 }
                 if (pointCount > 1 || number[i] == 'e'){
