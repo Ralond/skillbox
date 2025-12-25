@@ -11,13 +11,13 @@ int condition(std::vector<int> nom, std::vector<int> vec){
         std::cout << nom[i] << ": " << vec[i] << std::endl;
         all += nom[i] * vec[i];
     }
-    std::cout << "Total amount: " << all;
+    std::cout << "Total amount: " << all << std::endl;
     return all;
 }
 
 int main(){
     std::vector<int> nominal{100, 200, 500, 1000, 2000, 5000}, quantity{0,0,0,0,0,0};
-    std::ifstream file("condition.bin", std::ios::binary);
+    std::ifstream file("condition.bin", std::ios::binary | std::ios::ate);
     std::string action = " ";
 
     
@@ -26,19 +26,23 @@ int main(){
     std::streampos fileSize = file.tellg();
     if (fileSize == 0){
         std::cout << "The ATM is empty." << std::endl;
-    } else {
+    } else if (file.is_open()) {
+        file.seekg(0, std::ios::beg);
+        file.read(reinterpret_cast<char*>(quantity.data()), quantity.size() * sizeof(int));
         for (int i = 0; i < nominal.size(); i++){
-            file >> quantity[i];
-            std::cout << nominal[i] << ": " << quantity[i];
+            std::cout << nominal[i] << ": " << quantity[i] << std::endl;
             actualBills += quantity[i];
             summ += nominal[i] * quantity[i];
         }
-    }
-    file.close();
+        file.close();
+        std::cout << "Total amount: " << summ << std::endl;
+    } else std::cout << "Error file" << std::endl;
+
     while (action != "close"){
         std::cout << "Enter a request: ";
         std::cin >> action;
         
+        //поправить
         if (action == "+"){
             if (actualBills < maxBills){
                 int adding = maxBills - actualBills, addNominal;
@@ -78,9 +82,9 @@ int main(){
             summ = condition(nominal, quantity);
         } else if (action == "close"){
             std::ofstream file("condition.bin", std::ios::binary);
-            for (int i = 0; i < quantity.size(); i++){
-                file << quantity[i] << std::endl;
-            }
+            
+            file.write(reinterpret_cast<const char*>(quantity.data()), quantity.size() * sizeof(int));
+
             file.close();
             condition(nominal, quantity);
         }
