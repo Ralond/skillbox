@@ -1,7 +1,5 @@
  #include <iostream>
  #include <fstream>
- #include <cstdlib>
- #include <ctime>
 
  int main(){
     std::string target, fish = "NULL";
@@ -19,7 +17,6 @@
         }
     }
     fileRead.close();
-
-    fileWrite << "Total " << target << " caught: " << total << std::endl;
     fileWrite.close();
+    std::cout << "Total " << target << " caught: " << total << std::endl;
 }

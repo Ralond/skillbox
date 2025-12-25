@@ -17,17 +17,14 @@ int condition(std::vector<int> nom, std::vector<int> vec){
 
 int main(){
     std::vector<int> nominal{100, 200, 500, 1000, 2000, 5000}, quantity{0,0,0,0,0,0};
-    std::ifstream file("condition.bin", std::ios::binary | std::ios::ate);
+    std::ifstream file("condition.bin", std::ios::binary);
     std::string action = " ";
 
     
     int maxBills = 1000, actualBills = 0, summ = 0;
     
-    std::streampos fileSize = file.tellg();
-    if (fileSize == 0){
-        std::cout << "The ATM is empty." << std::endl;
-    } else if (file.is_open()) {
-        file.seekg(0, std::ios::beg);
+    if (file.is_open()) {
+        std::cout << "Load ATM..." << std::endl;
         file.read(reinterpret_cast<char*>(quantity.data()), quantity.size() * sizeof(int));
         for (int i = 0; i < nominal.size(); i++){
             std::cout << nominal[i] << ": " << quantity[i] << std::endl;
@@ -36,25 +33,21 @@ int main(){
         }
         file.close();
         std::cout << "Total amount: " << summ << std::endl;
-    } else std::cout << "Error file" << std::endl;
+    } else std::cout << "Make new load" << std::endl;
 
     while (action != "close"){
         std::cout << "Enter a request: ";
         std::cin >> action;
         
-        //поправить
         if (action == "+"){
             if (actualBills < maxBills){
                 int adding = maxBills - actualBills, addNominal;
                 int contrAdd = adding;
                 std::srand(std::time(nullptr));
-                for(int i = 0; i < quantity.size() && adding != 0; i++){
-                    addNominal = rand() % nominal.size();
-                    if (contrAdd > 7) {
-                        quantity[addNominal] += adding / 7;
-                        contrAdd -= adding / 7;
-                    } else 
-                        quantity[addNominal] += contrAdd;
+                while (actualBills < maxBills){
+                    addNominal = rand() % quantity.size();
+                    quantity[addNominal]++;
+                    actualBills++;
                 }
             }
             summ = condition(nominal, quantity);
@@ -64,7 +57,6 @@ int main(){
                 std::cout << "How much should I withdraw? (multiple of 100): ";
                 std::cin >> withdrawal;
                 if(withdrawal % 100 != 0) std::cout << "Incorrect amount" << std::endl;
-                saveSum = withdrawal; //на всякий
             } while (withdrawal % 100 != 0);
 
             if (withdrawal > summ){
@@ -75,6 +67,7 @@ int main(){
                         while(quantity[i] > 0 && withdrawal >= nominal[i]){
                             quantity[i]--;
                             withdrawal -= nominal[i];
+                            actualBills--;
                         }
                     }
                 }
