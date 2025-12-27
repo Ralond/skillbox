@@ -6,17 +6,17 @@
 struct person{
     std::string fName = "Ivan";
     std::string lName = "Ivanov";
-    std::string data = "01.01.1990";
+    std::string date = "01.01.1990";
     int payout = 0;
 
     person(const std::string& fn, const std::string& ln, 
-            const std::string& d, int p) : fName(fn), lName(ln), data(d), payout(p){}
+            const std::string& d, int p) : fName(fn), lName(ln), date(d), payout(p){}
 };
 
 void saveFile(std::ofstream& file, person& roster){
     int lenfName = roster.fName.length();
     int lenlName = roster.lName.length();
-    int lenData = roster.data.length();
+    int lenData = roster.date.length();
     
     file.write((char*)&lenfName, sizeof(lenfName));
     file.write(roster.fName.c_str(), lenfName);
@@ -25,50 +25,34 @@ void saveFile(std::ofstream& file, person& roster){
     file.write(roster.lName.c_str(), lenlName);
 
     file.write((char*)&lenData, sizeof(lenData));
-    file.write(roster.data.c_str(), lenData);
+    file.write(roster.date.c_str(), lenData);
 
     file.write((char*)&roster.payout, sizeof(roster.payout));
-}
-
-void loadFile(std::ifstream& file, person& roster){
-        int lenfName, lenlName, lenData;
-        
-        file.read((char*)&lenfName, sizeof(lenfName));
-        roster.fName.resize(lenfName);
-        file.read((char*)roster.fName.c_str(), lenfName);
-
-        file.read((char*)&lenlName, sizeof(lenlName));
-        roster.lName.resize(lenlName);
-        file.read((char*)roster.lName.c_str(), lenlName);
-
-        file.read((char*)&lenData, sizeof(lenData));
-        roster.data.resize(lenData);
-        file.read((char*)roster.data.c_str(), lenData);
-
-        file.read((char*)&roster.payout, sizeof(roster.payout));
 }
 
 void addPerson(std::vector<person>& roster){
     std::string choice = "yes";
     while(choice == "yes"){
-        std::string fName, lName, data;
+        std::string fName, lName, date;
         int payout;
 
         std::cout << "Enter first and last name: ";
         std::cin >> fName >> lName;
         do{
-            std::cout << "Enter the payment date: ";
-            std::cin >> data;
+            std::cout << "Enter the date (dd.mm.yyyy): ";
+            std::cin >> date;
 
-            if (std::stoi(data.substr(3,2)) > 12 || std::stoi(data.substr(3,2)) < 1) 
+            if (std::stoi(date.substr(0,2)) > 31 || std::stoi(date.substr(0,2)) < 1 || 
+                    std::stoi(date.substr(3,2)) > 12 || std::stoi(date.substr(3,2)) < 1) 
                 std::cout << "Incorrect date format!" << std::endl;
 
-        } while (std::stoi(data.substr(3,2)) > 12 || std::stoi(data.substr(3,2)) < 1);
+        } while (std::stoi(date.substr(0,2)) > 31 || std::stoi(date.substr(0,2)) < 1 || 
+                    std::stoi(date.substr(3,2)) > 12 || std::stoi(date.substr(3,2)) < 1);
 
         std::cout << "Enter the payment: ";
         std::cin >> payout;
 
-        roster.push_back(person(fName,lName,data,payout));
+        roster.push_back(person(fName,lName,date,payout));
     
         std::cout << "Add new person? (yes, no): ";
         std::cin >> choice;
@@ -99,9 +83,9 @@ int main(){
             std::ifstream file("roster.bin", std::ios::binary);
 
             while (!file.eof()){
-                std::string fName, lName, data;
+                std::string fName, lName, date;
                 int payout;
-                int lenfName, lenlName, lenData;
+                int lenfName, lenlName, lenDate;
                 
                 file.read((char*)&lenfName, sizeof(lenfName));
                 fName.resize(lenfName);
@@ -111,19 +95,19 @@ int main(){
                 lName.resize(lenlName);
                 file.read((char*)lName.c_str(), lenlName);
 
-                file.read((char*)&lenData, sizeof(lenData));
-                data.resize(lenData);
-                file.read((char*)data.c_str(), lenData);
+                file.read((char*)&lenDate, sizeof(lenDate));
+                date.resize(lenDate);
+                file.read((char*)date.c_str(), lenDate);
 
                 file.read((char*)&payout, sizeof(payout));
-                
-                roster.push_back(person(fName,lName,data,payout));
+                if (!file.eof()) 
+                    roster.push_back(person(fName,lName,date,payout));
             }
             file.close();
 
             for(int i = 0; i < roster.size(); i++){
                 std::cout << roster[i].fName << " " << roster[i].lName 
-                << " " << roster[i].data << " " << roster[i].payout << std::endl;
+                << " " << roster[i].date << " " << roster[i].payout << std::endl;
             }
         }
 
