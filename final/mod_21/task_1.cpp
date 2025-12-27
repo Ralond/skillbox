@@ -86,5 +86,7 @@ int main(){
             }
         }
 
+        if (command != "add" && command != "list" && command != "close") std::cout << "Unknown command" << std::endl;
+
     }
 }
