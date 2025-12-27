@@ -14,7 +14,20 @@ struct person{
 };
 
 void saveFile(std::ofstream& file, person& roster){
-    file << roster.fName << " " << roster.lName << " " << roster.date << " " << roster.payout << std::endl;
+    int lenfName = roster.fName.length();
+    int lenlName = roster.lName.length();
+    int lenData = roster.date.length();
+    
+    file.write((char*)&lenfName, sizeof(lenfName));
+    file.write(roster.fName.c_str(), lenfName);
+
+    file.write((char*)&lenlName, sizeof(lenlName));
+    file.write(roster.lName.c_str(), lenlName);
+
+    file.write((char*)&lenData, sizeof(lenData));
+    file.write(roster.date.c_str(), lenData);
+
+    file.write((char*)&roster.payout, sizeof(roster.payout));
 }
 
 void addPerson(std::vector<person>& roster){
@@ -59,7 +72,7 @@ int main(){
 
             addPerson(roster);
 
-            std::ofstream file("roster.txt", std::ios::app);
+            std::ofstream file("roster.bin", std::ios::binary | std::ios::app);
             for (int i = 0; i < roster.size(); i++){
                 saveFile(file, roster[i]);
             }
@@ -67,14 +80,26 @@ int main(){
         }
 
         if (command == "list"){
-            std::ifstream file("roster.txt");
+            std::ifstream file("roster.bin", std::ios::binary);
 
             while (!file.eof()){
                 std::string fName, lName, date;
                 int payout;
+                int lenfName, lenlName, lenDate;
                 
-                file >> fName >> lName >> date  >> payout;
+                file.read((char*)&lenfName, sizeof(lenfName));
+                fName.resize(lenfName);
+                file.read((char*)fName.c_str(), lenfName);
 
+                file.read((char*)&lenlName, sizeof(lenlName));
+                lName.resize(lenlName);
+                file.read((char*)lName.c_str(), lenlName);
+
+                file.read((char*)&lenDate, sizeof(lenDate));
+                date.resize(lenDate);
+                file.read((char*)date.c_str(), lenDate);
+
+                file.read((char*)&payout, sizeof(payout));
                 if (!file.eof()) 
                     roster.push_back(person(fName,lName,date,payout));
             }
